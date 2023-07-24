@@ -19,5 +19,3 @@ arr[sum] = value
 
 print(sum)
 print(arr)
-
-
