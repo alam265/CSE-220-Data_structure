@@ -8,4 +8,4 @@ def exp(a ,n):
         temp = exp(a,(n-1)/2)
         return temp*temp*a 
     
-print(exp(2,5))
+print(exp(2,6))
