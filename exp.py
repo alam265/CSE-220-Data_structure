@@ -1,17 +1,15 @@
-def changePi(string):
-    output = ""
-
-    
+def parenBit(st):
+    op = ''
     i = 0
-    while i < len(string):
-        
-        if i + 1 < len(string) and string[i:i + 2] == "pi":
-            output += "3.14"
-            i += 2
+    while i < len(st):
+        if st[i] == '(':
+            while st[i]!=')':
+                op+=st[i]
+                i+=1 
+            op+=')'
         else:
-            output += string[i]
-            i += 1
+            i+=1 
+    return op 
 
-    return output
 
-print(changePi('xpix'))
+print(parenBit("x(hello)"))
