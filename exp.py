@@ -1,15 +1,26 @@
-def parenBit(st):
-    op = ''
-    i = 0
-    while i < len(st):
-        if st[i] == '(':
-            while st[i]!=')':
-                op+=st[i]
-                i+=1 
-            op+=')'
-        else:
-            i+=1 
-    return op 
+def strDist(str, sub):
+    # Find the first occurrence of sub in str
+    start = -1
+    for i in range(len(str) - len(sub) + 1):
+        if str[i:i + len(sub)] == sub:
+            start = i
+            break
+
+    # Find the last occurrence of sub in str
+    end = -1
+    for i in range(len(str) - 1, -1, -1):
+        if str[i:i + len(sub)] == sub:
+            end = i
+            break
+
+    # Calculate the length of the substring between start and end
+    length = end - start + len(sub)
+
+    return length
+
+# Test cases
+print(strDist("catcowcat", "cat"))      # Output: 9
+print(strDist("catcowcat", "cow"))      # Output: 3
+print(strDist("cccatcowcatxx", "cat"))  # Output: 9
 
 
-print(parenBit("x(hello)"))
