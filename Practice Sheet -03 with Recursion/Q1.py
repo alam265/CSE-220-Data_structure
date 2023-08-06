@@ -23,8 +23,7 @@ def iteration(h):
 
 
 def last_to_front(head):
-    p = head 
-    q = None 
+ 
     def moving_pointers(p,q):
         if p.next == None:
             p.next = head 
