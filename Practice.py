@@ -5,38 +5,54 @@ class Node:
 
 def Creation(arr):
     head = Node(arr[0], None)
-    tail = head 
+    tail = head
     for i in range(1, len(arr)):
         n = Node(arr[i], None)
-        tail.next = n 
-        tail = tail.next 
-    return head 
+        tail.next = n
+        tail = tail.next
+    return head
 
 def iteration(head):
-    p = head 
-    while p != None:
+    p = head
+    while p:
         print(p.elem, end=' ')
-        p = p.next 
-    print()
+        p = p.next
 
-def Intersection(head1, head2):
-    if head1 is None or head2 is None:
-        return None
+def length(head):
+    p = head
+    c = 0
+    while p:
+        c += 1
+        p = p.next
+    return c
 
-    if head1.elem == head2.elem:
-        new_node = Node(head1.elem,None)
-        new_node.next = Intersection(head1.next, head2.next)
-        return new_node
-    elif head1.elem < head2.elem:
-        return Intersection(head1.next, head2)
-    else:
-        return Intersection(head1, head2.next)
+def swap_nodes_value(head, k):
+    def swap_elem(node, k, l, idx):
+        if node is None:
+            return
 
-LL1 = Creation([1, 2, 3, 4, 5])
-LL2 = Creation([2, 4, 6, 8])
+        nonlocal first_elem
 
-Intersecting_LL = Intersection(LL1, LL2)
+        if idx == k:
+            first_elem = node.elem
+        if idx == l - k + 1:
+            node.elem, first_elem = first_elem, node.elem
 
-iteration(Intersecting_LL)
+        swap_elem(node.next, k, l, idx + 1)
 
-        
+    
+
+    l = length(head)
+    first_elem = None  # Store the value of the kth node from the beginning
+    swap_elem(head, k, l, 1)
+
+LL = Creation([1, 2, 3, 4, 5])
+
+print("Original Linked List:")
+iteration(LL)
+print('\n---------------')
+
+new_head = swap_nodes_value(LL, 2)
+
+print("Linked List after Swapping:")
+iteration(new_head)
