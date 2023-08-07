@@ -35,25 +35,20 @@ def iteration(head):
 
 
 def Delect_Loop(head):
-    if head == None or head.next == None:
-        return False 
-    
-    slow = head 
-    fast = head.next 
-
-    while slow != fast:
+    def Slow_fast(slow,fast):
         if fast == None or fast.next == None:
             return False
-        slow = slow.next 
-        fast = fast.next.next 
-
-    return True 
+        elif slow == fast:
+            return True 
+        else:
+            return Slow_fast(slow.next,fast.next.next)
+    x = Slow_fast(head,head.next)
+    return x 
 
 
 LL = Creation([1,2,3,4,5])
 
-LL_with_Loop(LL) # Creating a Loop in LL
+LL_with_Loop(LL)
 
 
 print(Delect_Loop(LL))
-
