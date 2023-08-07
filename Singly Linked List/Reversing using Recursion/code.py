@@ -19,13 +19,14 @@ def iteration(h):
         p = p.next 
 
 
-def reverse(p,q):
+def reverse(q,p):
     if p != None:
-        reverse(p.next,p)
+        reverse(p,p.next)
         p.next = q 
     else:
         head = q
-        return head
+    
+        
     
         
 
@@ -37,9 +38,8 @@ arr=[1,3,5,7,9,11,13]
 LL = Creation(arr)
 #iteration(LL)
 print()
-
-LL1=reverse(LL,None)
-iteration(LL1)
+reverse(None,LL)
+iteration(LL)
 
 
 
