@@ -4,7 +4,7 @@ def countHi(st):
     elif st[0] != 'x' and st[1:3] == 'hi':
         return 1+ countHi(st[3:])
     else:
-        return  countHi(st[3:])
+        return  countHi(st[1:])
     
 
-print(countHi("xhixhi"))
+print(countHi("ahibhi"))

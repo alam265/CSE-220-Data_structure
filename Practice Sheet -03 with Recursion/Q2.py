@@ -20,19 +20,18 @@ def iteration(head):
         p = p.next 
 
 def Intersection(head1,head2):
-    p1 = head1
-    p2 = head2 
 
 
-    if p1== None or p2 == None:
+
+    if head1 == None or head2 == None:
         return None
-    elif p1.elem == p2.elem:
-        new_Node = Node(p1.elem,None)
+    elif head1.elem == head2.elem:
+        new_Node = Node(head1.elem,None)
         new_Node.next = Intersection(head1.next,head2.next)
         return new_Node
-    elif p1.elem < p2.elem :
+    elif head1.elem < head2.elem :
         return Intersection(head1.next , head2)
-    elif p1.elem > p2.elem:
+    elif head1.elem > head2.elem:
         return Intersection(head1, head2.next)
 
 
