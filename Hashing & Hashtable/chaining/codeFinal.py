@@ -30,6 +30,26 @@ def Search(wanted_key,hash_table):
                 c+=1
     return f"{wanted_key} doesn't exist"
 
+
+def Delete_key(key,hash_table):
+    for i in range(len(hash_table)):
+        if hash_table[i] != None:
+            q = None
+            p = hash_table[i]
+            if p.key == key:                               # For Deleting First Node
+                deleted_key = p.key
+                hash_table[i] = p.next
+                return deleted_key
+            else:
+                while p!=None:                            # For Deleting Rest of the nodes
+                    if p.key == key:
+                        q.next = p.next
+                        return p.key
+                    else:
+                        q = p
+                        p = p.next 
+
+
 def Print_HashTable(hash_table):
     for i in range(len(hash_table)):
         if hash_table[i] == None:
@@ -52,4 +72,10 @@ Print_HashTable(my_hash_table)
 
 
 
-print(Search(10,my_hash_table))
+#Test code
+print("Deleted key is",Delete_key(15,my_hash_table))   #Deleting a key
+
+print(Search(10,my_hash_table))                        #Searching a key
+
+print("\nUpdated Hash Table:")                         #Printing Updated Hash Table
+Print_HashTable(my_hash_table)
