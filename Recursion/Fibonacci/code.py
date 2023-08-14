@@ -5,4 +5,4 @@ def Fibonacci(nth):
 
 
 
-print(Fibonacci(6))
+print(Fibonacci(40))
