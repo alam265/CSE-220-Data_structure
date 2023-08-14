@@ -23,7 +23,7 @@ class Queue:
 
             return x 
     def peek(self):
-        return self.arr[self.front+1] 
+        return self.arr[0] 
         
     def display(self):
         for i in range(self.front+1,self.size):
@@ -39,8 +39,8 @@ Q = Queue(4)
 Q.enqueue(2)
 Q.enqueue(5)
 Q.enqueue(9)
-Q.enqueue(10)
-Q.enqueue(15)
+#Q.enqueue(10)
+#Q.enqueue(15)
 print(Q.peek())
 
 

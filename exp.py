@@ -1,6 +1,5 @@
-sum = 0
-string = "Alam"
-for i in string:
-    sum+=ord(i)
+lst =[]
 
-print(sum%10)
+lst+=[12,23,76,45]
+
+print(lst)

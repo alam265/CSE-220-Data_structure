@@ -3,8 +3,8 @@ class Queue:
     def __init__(self,size):
         self.size = size
         self.arr = np.zeros(size,dtype=int)
-        self.front = 0 
-        self.back = 0 
+        self.front = 0
+        self.back = 0
 
     def enqueue(self,elem):
         if (self.back+1)%self.size == self.front: 
@@ -26,7 +26,8 @@ class Queue:
         if self.front==self.back:
             return True 
         return False 
-    
+    def peek(self):
+        return self.arr[self.front+1]
     def display(self):
         for i in range(self.front+1,self.back+1):
             print(self.arr[i],end=' ')
@@ -40,7 +41,9 @@ cq.enqueue(12)
 cq.enqueue(15)  
 cq.enqueue(19)  
 cq.dequeue()
+cq.dequeue()
 
+print(cq.peek())
 
 
 cq.display()
