@@ -5,8 +5,9 @@ class TreeNode:
         self.rchild = rc 
 
 class Node:
-    def __init__(self,elem,next):
-        self.elem = elem 
+    def __init__(self,ref,next):
+        self.ref = ref 
+         
         self.next = next 
 
 class Queue:
@@ -14,12 +15,12 @@ class Queue:
         self.front = None 
         self.back = None 
 
-    def enqueue(self,elem):
+    def enqueue(self,ref):
         if self.front == None:
-            self.front = Node(elem,None)
+            self.front = Node(ref,None)
             self.back = self.front 
         else:
-            newNode = Node(elem,None)
+            newNode = Node(ref,None)
             self.back.next = newNode
             self.back = newNode
 
@@ -29,7 +30,7 @@ class Queue:
         else:
             x = self.front 
             self.front = self.front.next 
-            return x 
+            return x.ref 
         
     def peek(self):
         if self.front == None:
@@ -50,25 +51,38 @@ class Queue:
 def Tree_creation():
     q = Queue()
     v = int(input('Enter Root value:'))
-    root = TreeNode(v,0,0)
+    root = TreeNode(v,None,None)
+    r =root
     q.enqueue(root)
 
     while not q.isEmpty():
         p = q.dequeue()
-        x = int(input("Enter Left child: "))
+        x = int(input(f"Enter Left child of {p.value}: "))
         if x!=-1:
-            temp = TreeNode(x,0,0)
+            temp = TreeNode(x,None,None)
             p.lchild = temp 
             q.enqueue(temp)
 
-        x = int(input("Enter Right child: "))
+        x = int(input(f"Enter Right child of {p.value}: "))
         if x!=-1:
-            temp = TreeNode(x,0,0)
+            temp = TreeNode(x,None,None)
             p.rchild = temp 
             q.enqueue(temp)
+    return r
 
 
-Tree_creation()
+def preOrder(root):
+    r=root
+    if r!=None:
+        print(r.value,end=' ')
+        preOrder(r.lchild)
+        preOrder(r.rchild)
+
+
+
+tree = Tree_creation()
+
+preOrder(tree)
 
 
 
