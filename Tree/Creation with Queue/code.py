@@ -91,6 +91,53 @@ def postorder(root):
         postorder(root.rchild)
         print(root.value,end=' ')
 
+
+def CountNodes(r):
+    if r == None:
+        return 0
+    x = CountNodes(r.lchild)
+    y = CountNodes(r.rchild)
+    return x+y+1 
+
+def Height(r):
+    if r == None:
+        return -1
+    x = Height(r.lchild)
+    y = Height(r.rchild)
+    if x > y :
+        return x+1
+    else:
+        return y+1 
+    
+def CountNode_of_Degree_two(r):
+    if r == None:
+        return 0 
+    if r!=None:
+        x = CountNode_of_Degree_two(r.lchild)
+        y = CountNode_of_Degree_two(r.rchild)
+    if r.lchild and r.rchild:
+        return x + y + 1
+    else:
+        return x+y
+    
+def Count_leafs(r):
+    if r == None:
+        return 0
+    if r != None :
+        x = Count_leafs(r.lchild)
+        y = Count_leafs(r.rchild)
+    if r.lchild == None and r.rchild == None:
+        return x + y + 1 
+    else:
+        return x + y 
+
+
+
+
+
+
+
+
 tree = Tree_creation()
 
 
@@ -102,6 +149,12 @@ inorder(tree)
 
 print("\nprinting postorder:")
 postorder(tree)
+
+print("\nNumber of Nodes:",CountNodes(tree))
+print("Height of the tree:",Height(tree))
+print("Nodes with degree two:",CountNode_of_Degree_two(tree))
+
+print("Number of leafs:",Count_leafs(tree))
 
 
 
