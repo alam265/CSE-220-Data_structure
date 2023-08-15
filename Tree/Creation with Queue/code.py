@@ -78,11 +78,30 @@ def preOrder(root):
         preOrder(r.lchild)
         preOrder(r.rchild)
 
+def inorder(root):
+    if root!=None:
+        inorder(root.lchild)
+        print(root.value,end=' ')
+        inorder(root.rchild)
+        
 
+def postorder(root):
+    if root!=None:
+        postorder(root.lchild)
+        postorder(root.rchild)
+        print(root.value,end=' ')
 
 tree = Tree_creation()
 
+
+print("Printing in Preorder:")
 preOrder(tree)
+
+print("\nPrinting in Inorder:")
+inorder(tree)
+
+print("\nprinting postorder:")
+postorder(tree)
 
 
 
