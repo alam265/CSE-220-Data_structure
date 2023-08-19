@@ -1,3 +1,4 @@
+lane = [None]*4
 class Node:
     def __init__(self, elem, next=None):
         self.elem = elem
@@ -26,33 +27,34 @@ def length(head):
         p = p.next
     return c
 
-def swap_nodes_value(head, k):
-    def swap_elem(node, k, l, idx):
-        if node is None:
-            return
+def express_lane(head):
+    bucket_size = (length(head)//4)+1
 
-        nonlocal first_elem
+    p = head 
+    lane[0]= p
+    idx = 1
+    while p and p.next:
+        for _ in range(bucket_size):
+            p = p.next 
+        lane[idx] = p
+        idx+=1
 
-        if idx == k:
-            first_elem = node.elem
-        if idx == l - k + 1:
-            node.elem, first_elem = first_elem, node.elem
 
-        swap_elem(node.next, k, l, idx + 1)
 
-    
-
-    l = length(head)
-    first_elem = None  # Store the value of the kth node from the beginning
-    swap_elem(head, k, l, 1)
-
-LL = Creation([1, 2, 3, 4, 5])
+LL = Creation([4,6,9,18,25,37,62,67,79,84])
 
 print("Original Linked List:")
 iteration(LL)
 print('\n---------------')
 
-new_head = swap_nodes_value(LL, 2)
+express_lane(LL)
 
-print("Linked List after Swapping:")
-iteration(new_head)
+
+for i in lane:
+    print(i.elem)
+
+
+print(lane[0].next.elem)
+
+
+

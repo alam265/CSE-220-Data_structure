@@ -19,15 +19,16 @@ def Insert(key,val,hash_table):
         hash_table[idx] = new_Node
 
 def Search(wanted_key,hash_table):
-    for i in range(len(hash_table)):
-        if hash_table[i] != None:
-            p = hash_table[i]
-            c = 1
-            while p!= None:
-                if p.key == wanted_key:
-                    return f"{wanted_key} is at index -> {i}\nvalue: {p.val}\nLevel: {c} "
-                p = p.next 
-                c+=1
+    idx = Hash(wanted_key,hash_table)
+    p = hash_table[idx]
+    c = 1
+    while p!= None:
+        if p.key == wanted_key:
+            return f"{wanted_key} is at index -> {idx}\nvalue: {p.val}\nLevel: {c} "
+        
+        p = p.next 
+        c+=1
+        
     return f"{wanted_key} doesn't exist"
 
 
@@ -75,7 +76,7 @@ Print_HashTable(my_hash_table)
 #Test code
 print("Deleted key is",Delete_key(15,my_hash_table))   #Deleting a key
 
-print(Search(10,my_hash_table))                        #Searching a key
+print(Search(17,my_hash_table))                        #Searching a key
 
 print("\nUpdated Hash Table:")                         #Printing Updated Hash Table
 Print_HashTable(my_hash_table)
