@@ -112,9 +112,9 @@ def Height(r):
 def CountNode_of_Degree_two(r):
     if r == None:
         return 0 
-    if r!=None:
-        x = CountNode_of_Degree_two(r.lchild)
-        y = CountNode_of_Degree_two(r.rchild)
+    
+    x = CountNode_of_Degree_two(r.lchild)
+    y = CountNode_of_Degree_two(r.rchild)
     if r.lchild and r.rchild:
         return x + y + 1
     else:
@@ -123,9 +123,10 @@ def CountNode_of_Degree_two(r):
 def Count_leafs(r):
     if r == None:
         return 0
-    if r != None :
-        x = Count_leafs(r.lchild)
-        y = Count_leafs(r.rchild)
+    
+    x = Count_leafs(r.lchild)
+    y = Count_leafs(r.rchild)
+    
     if r.lchild == None and r.rchild == None:
         return x + y + 1 
     else:
@@ -133,7 +134,17 @@ def Count_leafs(r):
 
 
 
-
+def depth(node,node_level,target_elem):
+    if node == None:
+        return 0 
+    if node.value == target_elem:
+        return node_level
+    left = depth(node.lchild,node_level+1,target_elem)
+    if left!=0:
+        return left 
+    right = depth(node.rchild,node_level+1, target_elem)
+    return right 
+ 
 
 
 
@@ -155,6 +166,8 @@ print("Height of the tree:",Height(tree))
 print("Nodes with degree two:",CountNode_of_Degree_two(tree))
 
 print("Number of leafs:",Count_leafs(tree))
+
+print("\nDepth of Node 4 is:",depth(tree,0,4))
 
 
 

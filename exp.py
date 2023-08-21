@@ -1,5 +1,7 @@
-lst =[]
+def func(n):
+    if n == 0:
+        return 
+    func(n-1)
+    print(n)
 
-lst+=[12,23,76,45]
-
-print(lst)
+func(5)
