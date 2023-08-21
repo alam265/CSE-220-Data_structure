@@ -34,6 +34,7 @@ array = [None]*16
 def array_from_tree(p,i):
     if p == None:
         return 
+    
     array[i] = p.elem
     array_from_tree(p.left,2*i)
     array_from_tree(p.right,2*i+1)
