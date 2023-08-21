@@ -70,22 +70,21 @@ def Tree_creation():
             q.enqueue(temp)
     return r
 
-root = Tree_creation()
+print("Create 1st tree:")
+root1 = Tree_creation()
+
+print("\nCreate 2nd Tree:")
+root2 = Tree_creation()
 
 
-def isSymetric(r1,r2):
-    if r1 == None and r2 == None:
+def isIdentical(r1,r2):
+    if r1 ==  None and r2 == None:
         return True 
     if r1 == None or r2 == None:
-        return False
-    
-    return (r1.value == r2.value) and isSymetric(r1.lchild,r2.rchild) and isSymetric(r1.rchild, r2.lchild)
+        return False 
+    return (r1.value == r2.value) and (isIdentical(r1.lchild, r2.lchild)) and (isIdentical(r1.rchild, r2.rchild)) 
 
-
-if isSymetric(root,root):
-    print("Tree is Symetric")
-    
+if isIdentical(root1,root2):
+    print("Binay Tree is Identical")
 else:
-    print("Tree is not Symetric")
-
-                                   
+    print("Binary Tree is not Identical")
