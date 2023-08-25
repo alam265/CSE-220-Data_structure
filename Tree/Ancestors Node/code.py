@@ -74,14 +74,15 @@ def Tree_creation():
 root = Tree_creation()
 
 
-def getLevel(root,target,level=0):
-    if root is None:
-        return 0
-    if root.value == target:
-        return level
-    return getLevel(root.lchild, target, level+1) + getLevel(root.rchild, target, level+1)
-
-
-
-print(getLevel(root,5))
-
+def AncestorNodes(root,child):
+    if root == None:
+        return False 
+    if root.value == child:
+        return True 
+    if AncestorNodes(root.lchild,child) or AncestorNodes(root.rchild, child):
+        print(root.value)
+        return True 
+    else:
+        return False 
+    
+AncestorNodes(root,5)

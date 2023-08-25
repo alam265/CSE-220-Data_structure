@@ -74,14 +74,15 @@ def Tree_creation():
 root = Tree_creation()
 
 
-def getLevel(root,target,level=0):
-    if root is None:
-        return 0
-    if root.value == target:
-        return level
-    return getLevel(root.lchild, target, level+1) + getLevel(root.rchild, target, level+1)
+def NodeAtDistance(root, k):
+    def helper(root, level):
+        if root == None:
+            return
+        if level == k:
+            print(root.value, end=' ')
+        helper(root.lchild, level+1)
+        helper(root.rchild, level+1)
 
+    helper(root,0)
 
-
-print(getLevel(root,5))
-
+NodeAtDistance(root, 2)
