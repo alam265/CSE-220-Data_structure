@@ -74,30 +74,32 @@ def Tree_creation():
 
 root = Tree_creation()
 
-
-def LargestValues(root):
-    def helper(root,level):
+def MinDepth(root):
+    def helper(arr, root, level=0, idx=0):
         if root == None:
             return 
-        if level == len(res):
-            res[level] = root.value
-        else:
-            if res[level] > root.value:
-                res[level] = res[level]
-            else:
-                res[level] = root.value
-        helper(root.lchild, level+1)
-        helper(root.rchild, level+1)
+        if root.lchild == None and root.rchild == None:
+            arr[level] = level
+        
+        helper(arr,root.lchild,level+1)
+        helper(arr,root.rchild,level+1)
+        
 
 
-    res = np.zeros(10,dtype=int)
-    helper(root,level=0)
-    for i in range(len(res)):
-        if res[i]!=0:
-            print(res[i],end=' ')
+
+    arr = np.zeros(10,dtype=int)
+    helper(arr,root)
     
-    
+    minD = 10000000000000000000
+    for i in range(len(arr)):
+        if arr[i]!=0:
+            if arr[i] < minD:
+                minD = arr[i]
+    if minD==10000000000000000000:
+        return 0
+    else:
+        return minD
 
 
-LargestValues(root)
 
+print(MinDepth(root))
