@@ -70,31 +70,17 @@ def Tree_creation():
             q.enqueue(temp)
     return r
 
-def PreOrderPrint(r):
-    if r == None:
-        return 
-    print(r.value,end=' ')
-    PreOrderPrint(r.lchild)
-    PreOrderPrint(r.rchild)
-
-   
-def MirrorConverter(r):
-    if r == None:
-        return 
-    r.lchild, r.rchild = r.rchild, r.lchild
-    MirrorConverter(r.lchild)
-    MirrorConverter(r.rchild)
-    return r 
 
 root = Tree_creation()
 
 
-print("Original Tree:")
-PreOrderPrint(root)
+def NodeWithOneChild(root):
+    if root is None:
+        return 
+    if (root.lchild and root.rchild==None) or (root.lchild==None and root.rchild):
+        print(root.value)
+    NodeWithOneChild(root.lchild)
+    NodeWithOneChild(root.rchild)
 
-Mirror_Tree = MirrorConverter(root)
 
-
-print("\nPrinting Mirror Tree:")
-PreOrderPrint(Mirror_Tree)
-
+NodeWithOneChild(root)

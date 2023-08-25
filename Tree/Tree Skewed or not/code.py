@@ -70,31 +70,20 @@ def Tree_creation():
             q.enqueue(temp)
     return r
 
-def PreOrderPrint(r):
-    if r == None:
-        return 
-    print(r.value,end=' ')
-    PreOrderPrint(r.lchild)
-    PreOrderPrint(r.rchild)
-
-   
-def MirrorConverter(r):
-    if r == None:
-        return 
-    r.lchild, r.rchild = r.rchild, r.lchild
-    MirrorConverter(r.lchild)
-    MirrorConverter(r.rchild)
-    return r 
 
 root = Tree_creation()
 
+def isSkewed(root):
+    if root is None:
+        return True 
+    if root.lchild and root.rchild:
+        return False
+    return isSkewed(root.lchild) and isSkewed(root.rchild)
 
-print("Original Tree:")
-PreOrderPrint(root)
 
-Mirror_Tree = MirrorConverter(root)
+if isSkewed(root):
+    print("Yes")
+else:
+    print("No")
 
-
-print("\nPrinting Mirror Tree:")
-PreOrderPrint(Mirror_Tree)
 
