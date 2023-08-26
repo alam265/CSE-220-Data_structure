@@ -1,4 +1,3 @@
-import numpy as np
 class TreeNode:
     def __init__(self,val,lc,rc):
         self.value = val 
@@ -74,28 +73,13 @@ def Tree_creation():
 
 root = Tree_creation()
 
-res = np.zeros(10,dtype=int)
-
-def LargestValues(root):
-    def helper(root,level):
-        if root == None:
-            return 
-        if level == len(res):
-            res[level] = root.value
-        else:
-            if res[level] > root.value:
-                res[level] = res[level]
-            else:
-                res[level] = root.value
-        helper(root.lchild, level+1)
-        helper(root.rchild, level+1)
+def fullNodes(root):
+    if root is None:
+        return 
+    if root.lchild and root.rchild:
+        print(root.value)
+    fullNodes(root.lchild)
+    fullNodes(root.rchild)
 
 
-    helper(root,level=0)
-LargestValues(root)
-
-for i in range(len(res)):
-    if res[i]!=0:
-        print(res[i],end=' ')
-
-
+fullNodes(root)

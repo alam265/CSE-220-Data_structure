@@ -1,4 +1,3 @@
-import numpy as np
 class TreeNode:
     def __init__(self,val,lc,rc):
         self.value = val 
@@ -73,29 +72,24 @@ def Tree_creation():
 
 
 root = Tree_creation()
+import numpy as np
+arr = np.zeros(10,dtype=int)
 
-res = np.zeros(10,dtype=int)
+def path(root, x):
+    if root is None:
+        return False 
+    if root.value == x:
+        return True 
+    if path(root.lchild, x) or path(root.rchild, x):
+        arr[root.value] = root.value 
+        return True 
+    return False 
 
-def LargestValues(root):
-    def helper(root,level):
-        if root == None:
-            return 
-        if level == len(res):
-            res[level] = root.value
-        else:
-            if res[level] > root.value:
-                res[level] = res[level]
-            else:
-                res[level] = root.value
-        helper(root.lchild, level+1)
-        helper(root.rchild, level+1)
-
-
-    helper(root,level=0)
-LargestValues(root)
-
-for i in range(len(res)):
-    if res[i]!=0:
-        print(res[i],end=' ')
-
-
+x = int(input('Enter x:'))
+if path(root, x):  
+    for i in range(len(arr)):
+        if arr[i]!=0:
+            print(arr[i],end='->')
+    print(x,end=' ')
+else:
+    print("No Path")
