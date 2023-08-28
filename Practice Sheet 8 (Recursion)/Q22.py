@@ -6,4 +6,4 @@ def countPairs(st):
     return countPairs(st[1:])
 
 
-print(countPairs('xaxa'))
+print(countPairs('xbxa'))

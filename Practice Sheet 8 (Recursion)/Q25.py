@@ -9,4 +9,4 @@ def stDist(st,sub):
         return stDist(st[1:],sub)
 
 
-print(stDist("cccatcowcatx",'cow'))
+print(stDist("cccatcowcatx",'cat'))
