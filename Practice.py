@@ -1,60 +1,85 @@
-lane = [None]*4
+class TreeNode:
+    def __init__(self,val,lc,rc):
+        self.value = val 
+        self.lchild = lc
+        self.rchild = rc 
+
 class Node:
-    def __init__(self, elem, next=None):
-        self.elem = elem
-        self.next = next
+    def __init__(self,ref,next):
+        self.ref = ref 
+         
+        self.next = next 
 
-def Creation(arr):
-    head = Node(arr[0], None)
-    tail = head
-    for i in range(1, len(arr)):
-        n = Node(arr[i], None)
-        tail.next = n
-        tail = tail.next
-    return head
+class Queue:
+    def __init__(self):
+        self.front = None 
+        self.back = None 
 
-def iteration(head):
-    p = head
-    while p:
-        print(p.elem, end=' ')
-        p = p.next
+    def enqueue(self,ref):
+        if self.front == None:
+            self.front = Node(ref,None)
+            self.back = self.front 
+        else:
+            newNode = Node(ref,None)
+            self.back.next = newNode
+            self.back = newNode
 
-def length(head):
-    p = head
-    c = 0
-    while p:
-        c += 1
-        p = p.next
-    return c
-
-def express_lane(head):
-    bucket_size = (length(head)//4)+1
-
-    p = head 
-    lane[0]= p
-    idx = 1
-    while p and p.next:
-        for _ in range(bucket_size):
+    def dequeue(self):
+        if self.front == None:
+            return 'Empty Queue'
+        else:
+            x = self.front 
+            self.front = self.front.next 
+            return x.ref 
+        
+    def peek(self):
+        if self.front == None:
+            return 'Queue is Empty'
+        return self.front.elem 
+    
+    def display(self):
+        p = self.front
+        while p!=None:
+            print(p.elem,end=' ')
             p = p.next 
-        lane[idx] = p
-        idx+=1
+    def isEmpty(self):
+        if self.front == None:
+            return True
+        return False
+
+
+def Tree_creation():
+    q = Queue()
+    v = int(input('Enter Root value:'))
+    root = TreeNode(v,None,None)
+    r =root
+    q.enqueue(root)
+
+    while not q.isEmpty():
+        p = q.dequeue()
+        x = int(input(f"Enter Left child of {p.value}: "))
+        if x!=-1:
+            temp = TreeNode(x,None,None)
+            p.lchild = temp 
+            q.enqueue(temp)
+
+        x = int(input(f"Enter Right child of {p.value}: "))
+        if x!=-1:
+            temp = TreeNode(x,None,None)
+            p.rchild = temp 
+            q.enqueue(temp)
+    return r
+
+root = Tree_creation()
 
 
 
-LL = Creation([4,6,9,18,25,37,62,67,79,84])
-
-print("Original Linked List:")
-iteration(LL)
-print('\n---------------')
-
-express_lane(LL)
-
-
-for i in lane:
-    print(i.elem)
+def get_level(root,target,level=0):
+    if root is None:
+        return 0 
+    if root.value == target:
+        return level 
+    return get_level(root.lchild,target,level+1) + get_level(root.rchild,target,level+1)
 
 
-print(lane[0].next.elem)
-
-
-
+print(get_level(root,5))
