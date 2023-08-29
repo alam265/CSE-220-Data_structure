@@ -73,14 +73,20 @@ def Tree_creation():
 
 root = Tree_creation()
 
-
+global flag 
+flag = False
 def NodeWithOneChild(root):
+    global flag
     if root is None:
         return 
     if (root.lchild and root.rchild==None) or (root.lchild==None and root.rchild):
+        flag = True
         print(root.value)
     NodeWithOneChild(root.lchild)
     NodeWithOneChild(root.rchild)
+    
 
 
 NodeWithOneChild(root)
+if flag == False:
+    print(-1)
