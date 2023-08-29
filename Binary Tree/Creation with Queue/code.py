@@ -145,6 +145,7 @@ def depth(node,node_level,target_elem):
     right = depth(node.rchild,node_level+1, target_elem)
     return right 
  
+#We can do it this way also
 def get_level(root,target,level=0):
     if root is None:
         return 0 
