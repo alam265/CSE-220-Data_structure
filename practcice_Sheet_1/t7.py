@@ -1,4 +1,4 @@
-arr = [3,0,0,2,0,4]
+arr = [7,4,0,9]
 
 flag = False 
 for i in range(len(arr)):
