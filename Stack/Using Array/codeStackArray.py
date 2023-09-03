@@ -27,11 +27,9 @@ class Stack:
             self.top -= 1
         return x 
     
-    def peak(self,pos):
-        if self.size-pos+1 < 0 :
-            return 'Invalid Position'
-        else:
-            return self.arr[self.size-pos+1]
+    def peak(self):
+
+        return self.arr[self.top]
         
         
     
@@ -45,6 +43,8 @@ st.push(4)
 st.push(5)
 st.pop()
 st.push(0)
+
+print(st.peak())
 
 st.Display()
 
