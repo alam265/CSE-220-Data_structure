@@ -104,7 +104,7 @@ def Height(r):
         return -1
     x = Height(r.lchild)
     y = Height(r.rchild)
-    if x > y :
+    if x < y :
         return x+1
     else:
         return y+1 
