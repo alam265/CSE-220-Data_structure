@@ -18,14 +18,25 @@ def iteration(h):
         print(p.elem,end=' ')
         p = p.next 
 
+#global head
+#def reverse(q,p):
+#    global head
+#    if p != None:
+#        reverse(p,p.next)
+#        p.next = q 
+#    else:
+#        head = q
 
-def reverse(q,p):
-    if p != None:
-        reverse(p,p.next)
-        p.next = q 
-    else:
-        head = q
-    
+def reverse(head):
+    def helper(r,q,p):
+        if p is None:
+            q.next = r 
+            return q 
+        else:
+            q.next = r 
+        return helper(q,p,p.next)
+    newHead = helper(None,head,head.next)
+    return newHead
         
     
         
@@ -36,10 +47,10 @@ def reverse(q,p):
 
 arr=[1,3,5,7,9,11,13]
 LL = Creation(arr)
-#iteration(LL)
-print()
-reverse(None,LL)
 iteration(LL)
+print()
+RLL = reverse(LL)
+iteration(RLL)
 
 
 
