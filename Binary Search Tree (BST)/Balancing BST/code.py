@@ -37,7 +37,7 @@ def BalanceBST(lst,start,end):
     if start > end:
         return None
     mid = (start+end)//2 
-    root = TreeNode(lst[mid],None,None)
+    root = TreeNode(lst[mid],None,None)                  
 
     root.left = BalanceBST(lst, start, mid-1)
     root.right = BalanceBST(lst, mid+1, end)
@@ -54,3 +54,4 @@ print('\nBalanced Tree:')
 PreOrder(Balanced_tree_root)
 
 
+ 

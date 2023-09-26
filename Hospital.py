@@ -1,9 +1,7 @@
 from replit import clear 
 class Patient:
-    def __init__(self,next,prev,id,name,age,bloodgroup):
+    def __init__(self,id,name,age,bloodgroup):
         
-        self.next = next 
-        self.prev = prev
         self.id = id 
         self.name = name 
         self.age = age 
@@ -11,57 +9,47 @@ class Patient:
 
 class WRM:
     def __init__(self):
-        self.dh = Patient(None,None,None,None,None,None) 
-        self.dh.next = self.dh
-        self.dh.prev = self.dh
-        self.tail = self.dh 
+        self.arr = []
+
         
 
     def RegisterPatient(self,id,name,age,bloodgroup):
         
-        temp = Patient(None,None,id,name,age,bloodgroup)
-        temp.next = self.dh 
-        temp.prev = self.tail
-        self.tail.next = temp 
-        self.tail = self.tail.next
+        temp = Patient(id,name,age,bloodgroup)
+        self.arr.append(temp)
                
         print("Patient registered successfully")
 
 
 
     def ShowAllPatient(self):
-        if self.dh.next == self.dh:  
+        if len(self.arr) == 0: 
             print("No patients left")
         else:
-            p = self.dh.next
-            print("Waiting patients:")
-            while p != self.dh:
-                print("ID:", p.id)
-                p = p.next
+            print("Waiting Patients list:")
+            for patient in self.arr:
+                print(f"Name: {patient.name},id: {patient.id}")
 
     def ServePatient(self):
-        if self.dh.next == self.dh:  
+        if len(self.arr) == 0:  
             print("No patients to serve.")
         else:
-            served_patient = self.dh.next
-            self.dh.next = served_patient.next
-            served_patient.next.prev = self.dh
-            self.tail = self.dh 
-            print("Serving patient:", served_patient.id)
+            print(f"Serverd patient Name: {self.arr[0].name} and id: {self.arr[0].id}")
+            del self.arr[0]
+
 
 
     def CanDoctorGoHome(self):
-        if self.dh.next == self.dh:
+        if len(self.arr) == 0:
             return True
         return False
+    
     def CancelAll(self):
-        if self.dh.next != self.dh:
-            self.dh.next = self.dh  
-            self.dh.prev = self.dh 
-            self.tail = self.dh 
+        if len(self.arr)!=0:
+            del self.arr[0:len(self.arr)]
             print('All appointment canceled')
             
-        elif  self.dh.next == self.dh:
+        elif  len(self.arr)==0:
             print('No Patient to cancel')
 
 

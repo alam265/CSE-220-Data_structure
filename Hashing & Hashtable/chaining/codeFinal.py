@@ -14,9 +14,8 @@ def Insert(key,val,hash_table):
     if hash_table[idx] == None:
         hash_table[idx] = node 
     else:
-        new_Node = HashNode(key,val,None)
-        new_Node.next = hash_table[idx]
-        hash_table[idx] = new_Node
+        node.next = hash_table[idx]
+        hash_table[idx] = node
 
 def Search(wanted_key,hash_table):
     idx = Hash(wanted_key,hash_table)
