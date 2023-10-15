@@ -70,29 +70,24 @@ def Tree_creation():
             q.enqueue(temp)
     return r
 
+def height(root):
+    if root is None:
+        return -1 
+    left = height(root.lchild)
+    right = height(root.rchild)
+    if left < right:
+        return right+1 
+    return left+1 
+
+def heightBalance(root):
+    if root is None:
+        return 1 
+    elif abs(height(root.lchild) - height(root.rchild)) > 1:
+        return 0 
+    return heightBalance(root.lchild) and heightBalance(root.rchild)
+
+
 
 root = Tree_creation()
 
-
-
-flag =1 
-prev =None
-def isBST(root):
-    def helper(root):
-        global prev,flag 
-        if root is None:
-            return 
-        helper(root.lchild)
-        if prev is not None and root.value < prev.value:
-            flag = 0
-            return 
-        prev = root
-        helper(root.rchild)
-
-    helper(root)
-    return flag
-
-print(isBST(root))
-
-
-
+print(heightBalance(root))

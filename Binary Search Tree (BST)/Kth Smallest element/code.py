@@ -73,7 +73,7 @@ def Tree_creation():
 
 root = Tree_creation()
 
-global i, ans
+
 i = 0
 ans =0 
 

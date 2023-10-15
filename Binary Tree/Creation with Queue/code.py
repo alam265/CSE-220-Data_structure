@@ -102,12 +102,12 @@ def CountNodes(r):
 def Height(r):
     if r == None:
         return -1
-    x = Height(r.lchild)
-    y = Height(r.rchild)
-    if x < y :
-        return x+1
+    left = Height(r.lchild)
+    right = Height(r.rchild)
+    if left < right :
+        return right+1
     else:
-        return y+1 
+        return left+1 
     
 def CountNode_of_Degree_two(r):
     if r == None:
