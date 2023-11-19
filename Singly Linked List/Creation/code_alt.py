@@ -53,13 +53,15 @@ def Insertion(head,idx,value):
         p.next = temp 
     else:
         print('Invalid Index')
+    return head
 
 
 
 arr=[1,3,5,7,9,11,13]
-Creation(arr)
-iteration(Creation(arr))
+head = Creation(arr)
+iteration(head)
 print()
 print(indexOf(Creation(arr),13))
-Insertion(Creation(arr),2,100)
-iteration(Creation(arr))
+Insertion(head,2,100)
+Insertion(head,0,100)
+iteration(head)

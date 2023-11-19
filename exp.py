@@ -1,91 +1,26 @@
-class TreeNode:
-    def __init__(self,val,lc,rc):
-        self.value = val 
-        self.lchild = lc
-        self.rchild = rc 
+def binary_search_first_index_and_count(arr, low, high, key):
+    global count
+    while low <= high:
+        mid = (low +high) // 2
 
-class Node:
-    def __init__(self,ref,next):
-        self.ref = ref 
-         
-        self.next = next 
-
-class Queue:
-    def __init__(self):
-        self.front = None 
-        self.back = None 
-
-    def enqueue(self,ref):
-        if self.front == None:
-            self.front = Node(ref,None)
-            self.back = self.front 
+        if arr[mid] == key:
+            count+=1
+            # Check if this is the first occurrence of the key
+            if mid == low or arr[mid - 1] < key:
+               
+                return mid
+            else:
+                high = mid-1 
+                
+        elif arr[mid] > key:
+            high = mid-1
         else:
-            newNode = Node(ref,None)
-            self.back.next = newNode
-            self.back = newNode
+            low = mid+1 
 
-    def dequeue(self):
-        if self.front == None:
-            return 'Empty Queue'
-        else:
-            x = self.front 
-            self.front = self.front.next 
-            return x.ref 
-        
-    def peek(self):
-        if self.front == None:
-            return 'Queue is Empty'
-        return self.front.elem 
-    
-    def display(self):
-        p = self.front
-        while p!=None:
-            print(p.elem,end=' ')
-            p = p.next 
-    def isEmpty(self):
-        if self.front == None:
-            return True
-        return False
+    return 'Nothing found'  # Return the negative index and count 0 if key is not found
 
-
-def Tree_creation():
-    q = Queue()
-    v = int(input('Enter Root value:'))
-    root = TreeNode(v,None,None)
-    r =root
-    q.enqueue(root)
-
-    while not q.isEmpty():
-        p = q.dequeue()
-        x = int(input(f"Enter Left child of {p.value}: "))
-        if x!=-1:
-            temp = TreeNode(x,None,None)
-            p.lchild = temp 
-            q.enqueue(temp)
-
-        x = int(input(f"Enter Right child of {p.value}: "))
-        if x!=-1:
-            temp = TreeNode(x,None,None)
-            p.rchild = temp 
-            q.enqueue(temp)
-    return r
-
-
-root = Tree_creation()
-
-i = 1
-elem = 0
-def KthSmallest(root,k):
-    global i,elem
-
-    if root is None:
-        return 
-    KthSmallest(root.lchild,k)
-    if k == i:
-        elem = root.value 
-        return 
-    i+=1 
-    KthSmallest(root.rchild,k)
-
-KthSmallest(root,3)
-print(elem)
+count = 0
+arr = [2,2,3,3,5,8,9,12,14,17]
+x = binary_search_first_index_and_count(arr,0,len(arr)-1,17)
+print(x)
+print(count)
