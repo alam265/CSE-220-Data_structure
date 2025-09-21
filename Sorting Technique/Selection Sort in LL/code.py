@@ -13,7 +13,7 @@ class Singly_Linked_List:
 
         for i in range(1,len(arr)):
             newNode = Node(arr[i],None)
-            tail.next = newNode
+            tail.next = newNode 
             tail = newNode 
         return self.head
 
